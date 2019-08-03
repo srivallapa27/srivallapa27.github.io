@@ -10,8 +10,8 @@
         fill: black;
       }
     </style>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v0.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
   </head>
   <body>
     <script type="text/javascript">
@@ -26,9 +26,11 @@
       var path = d3.geo.path()
           .projection(projection);
       var g = svg.append("g");
-
-      d3.json("world-110m2.json", function(error, topology) {
+      //world = (await fetch("https://unpkg.com/world-atlas@1/world/110m.json")).json()
+      d3.json("https://unpkg.com/world-atlas@1/world/110m.json", function(error, topology) {
+        console.log(topology);
           g.selectAll("path")
+
             .data(topojson.object(topology, topology.objects.countries)
                 .geometries)
           .enter()
